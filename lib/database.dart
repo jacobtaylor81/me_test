@@ -64,7 +64,7 @@ class Database {
 
   }
 
-// CHECK INTERNET CONNECTION
+// CHECK INTERNET CONNETION
   Future <bool> checkInternetConnection() async {
     try {
       final result = await InternetAddress.lookup('google.com');
@@ -81,6 +81,20 @@ class Database {
 
   // GET TOKEN
   Future <String> getToken() async {
+    String _token = '';
+
+    _dio.options.headers['content-Type'] = 'application/json';
+    _dio.options.headers["authorization"] = _basicAuthHeaderRead;
+
+    // GET TOKEN
+    var tokenResponse = await _dio.post(_tokenUrl);
+    _token = tokenResponse.data['response']['token'].toString();
+
+    return _token;
+  }
+
+  // GET TOKEN
+  Future <String> getAnotherToken() async {
     String _token = '';
 
     _dio.options.headers['content-Type'] = 'application/json';
