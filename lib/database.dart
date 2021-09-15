@@ -94,7 +94,7 @@ class Database {
   }
 
   // GET TOKEN
-  Future <String> getAnotherToken() async {
+  Future <String> getThisToken() async {
     String _token = '';
 
     _dio.options.headers['content-Type'] = 'application/json';
